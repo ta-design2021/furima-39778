@@ -29,6 +29,3 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
-# 20230910下記を追記
-.Ds_Store
