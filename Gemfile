@@ -81,3 +81,7 @@ end
 group :production do
   gem 'pg'
 end
+
+# 20230913下記を追記
+# ユーザー管理機能を使用できるようGemを追加
+gem 'devise'
