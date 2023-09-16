@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :item_scheduled_delivery
 
   #空の投稿を保存できないようにする
-  # validates :title, :text, presence: true
+  validates :item_name, :item_info, :item_price, presence: true
 
   #ジャンルの選択が「---」の時は保存できないようにする
   # item_category_idのid:1以外のときに保存できるという意味です
