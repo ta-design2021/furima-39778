@@ -17,7 +17,6 @@ class Item < ApplicationRecord
 
   #空の投稿を保存できないようにする
   with_options presence: true do
-    # validates :user_id
     validates :image
     validates :item_name
     validates :item_info
@@ -32,7 +31,7 @@ class Item < ApplicationRecord
 
   #ジャンルの選択が「---」の時は保存できないようにする
   # item_category_idのid:1以外のときに保存できるという意味です
-  with_options numericality: { other_than: 1, message: "can't be blank" } do
+  with_options numericality: { other_than: 0, message: "can't be blank" } do
     validates :item_category_id
     validates :item_sales_status_id
     validates :item_shipping_fee_status_id
