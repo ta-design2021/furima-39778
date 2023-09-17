@@ -25,13 +25,17 @@ class Item < ApplicationRecord
     validates :item_shipping_fee_status_id
     validates :item_prefecture_id
     validates :item_scheduled_delivery_id
-    # 300円以上かつ9,999,999円以下で、半角数字でないと入力不可
-    validates :item_price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    # 販売価格は半角数字でないと入力不可
+    validates :item_price, numericality: { only_integer: true, with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters'}
+
+    # 300円以上かつ9,999,999円以下でないと入力不可
+    validates :item_price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: 'is out of setting range'}
+
   end
 
   #ジャンルの選択が「---」の時は保存できないようにする
-  # item_category_idのid:1以外のときに保存できるという意味です
-  with_options numericality: { other_than: 0, message: "can't be blank" } do
+  # id:1以外のときに保存できるという意味です
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :item_category_id
     validates :item_sales_status_id
     validates :item_shipping_fee_status_id
