@@ -19,14 +19,14 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :image
     validates :item_name
-    validates :item_info
+    validates :item_info,                  length: { maximum: 1000 }
     validates :item_category_id
     validates :item_sales_status_id
     validates :item_shipping_fee_status_id
     validates :item_prefecture_id
     validates :item_scheduled_delivery_id
     # 販売価格は半角数字でないと入力不可
-    validates :item_price, numericality: { only_integer: true, with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters'}
+    validates :item_price,                 numericality: { only_integer: true, message: 'is invalid. Input half-width characters'}
 
     # 300円以上かつ9,999,999円以下でないと入力不可
     validates :item_price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: 'is out of setting range'}
