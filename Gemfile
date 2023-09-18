@@ -91,3 +91,10 @@ end
 # ユーザー管理機能を使用できるようGemを追加
 gem 'devise'
 gem 'pry-rails'
+# 20230915下記を追記
+# 変更されないデータをモデルファイル内に直接記述することで、データベースへ保存せずにデータを取り扱うことができるGemを追加
+gem 'active_hash'
+# 20230917下記を追記
+# 画像アップロード機能
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
