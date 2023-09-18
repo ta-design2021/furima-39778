@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   # ログインしていないユーザーはログインページに促す
   before_action :authenticate_user!, except: [:index, :show]
   # 重複処理のまとめ
-  before_action :set_item, only: [ :show, :edit]
+  before_action :set_item, only: [ :show, :edit, :update]
 
   def index
     @items = Item.order("created_at DESC")
@@ -33,8 +33,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
-
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
