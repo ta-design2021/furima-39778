@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   # ログインしていないユーザーはログインページに促す
   before_action :authenticate_user!, except: [:index, :show]
   # 重複処理のまとめ
-  before_action :set_item, only: [ :show, :edit, :update]
+  before_action :set_item, only: [ :show, :edit, :update, :destroy]
 
   def index
     @items = Item.order("created_at DESC")
@@ -19,6 +19,14 @@ class ItemsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    # ログインしているユーザーと同一であれば削除できる
+    if @item.user_id == current_user.id
+      @item.destroy
+    end
+      redirect_to root_path
   end
 
   def show
