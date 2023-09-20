@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @order_address = OrderAddress.new
   end
 
   def create
@@ -20,7 +21,7 @@ class OrdersController < ApplicationController
       redirect_to root_path
     else
       # バリデーションエラーが発生した場合の処理を追加（例: 注文フォームの再表示など）
-      render :index
+      render :index, status: :unprocessable_entity
     end
   end
 
