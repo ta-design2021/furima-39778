@@ -21,6 +21,6 @@ class OrderAddress
     order = Order.create(user_id: user_id, item_id: item_id)
     # 住所を保存する
     # order_idには、変数orderのidと指定する
-    Address.create(postal_code: postal_code, prefecture: prefecture, city: city, house_number: house_number, building_name: building_name, order_id: order.id)
+    Address.create(postal_code: postal_code, item_prefecture_id: item_prefecture_id, city: city, addresses: addresses, building: building, phone_number: phone_number, order_id: order.id)
   end
 end
