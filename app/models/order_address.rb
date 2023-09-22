@@ -5,14 +5,17 @@ class OrderAddress
 
   with_options presence: true do
     # orderモデルのバリデーション
-    validates :user_id # order_addressクラスにはアソシエーションを定義することはできないため、belongs_toによるバリデーションを行うことができないのでorder_addressクラスでuser_idに対してバリデーションを新たに設定。
+    validates :user_id # order_addressクラスにはアソシエーションを定義することはできない、belongs_toによるバリデーションを行うことができないのでorder_addressクラスでuser_idとitem_idに対してバリデーションを新たに設定。
     validates :item_id
     # addressesモデルのバリデーション
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
     validates :item_prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :addresses
-    validates :phone_number, format: { with: /\A[0-9]{11}\z/, message: 'is invalid. Input only number' }
+    validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid. Input only number' }
+    validates_length_of :phone_number, maximum: 11, message: 'is too long'
+    validates_length_of :phone_number, minimum: 10, message: 'is too short'
+
   end
 
   # フォームから送られてきた情報をテーブルに保存する処理

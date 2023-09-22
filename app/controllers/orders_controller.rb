@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
       # 保存が成功した場合の処理を追加（例: 注文完了ページへのリダイレクトなど）
       redirect_to root_path
     else
-      # バリデーションエラーが発生した場合の処理を追加（例: 注文フォームの再表示など）
+      # バリデーションエラーが発生した場合の処理を追加
       render :index, status: :unprocessable_entity
     end
   end
