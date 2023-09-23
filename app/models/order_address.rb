@@ -1,7 +1,7 @@
 class OrderAddress
   include ActiveModel::Model
   # ordesテーブルとaddressesテーブルに保存したいカラム名をすべて指定
-  attr_accessor :user_id, :item_id, :postal_code, :item_prefecture_id, :city, :addresses, :building, :phone_number
+  attr_accessor :user_id, :item_id, :postal_code, :item_prefecture_id, :city, :addresses, :building, :phone_number, :token
 
   with_options presence: true do
     # orderモデルのバリデーション
@@ -15,7 +15,7 @@ class OrderAddress
     validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid. Input only number' }
     validates_length_of :phone_number, maximum: 11, message: 'is too long'
     validates_length_of :phone_number, minimum: 10, message: 'is too short'
-
+    validates :token
   end
 
   # フォームから送られてきた情報をテーブルに保存する処理
