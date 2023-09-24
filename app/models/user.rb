@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   # itemsテーブルとのアソシエーション
   has_many :items
+  # ordersテーブルとのアソシエーション
+  has_many :orders
 
   #空の投稿を保存できないようにする
   with_options presence: true do
