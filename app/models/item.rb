@@ -3,6 +3,8 @@ class Item < ApplicationRecord
 
   # usersテーブルとのアソシエーション
   belongs_to :user
+  # ordersテーブルとのアソシエーション
+  has_one :order
 
   # active_storageとのアソシエーション
   # items・active_storage_blobsテーブルを関連付け

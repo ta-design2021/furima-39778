@@ -98,3 +98,9 @@ gem 'active_hash'
 # 画像アップロード機能
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
+# 20230923下記を追記
+# 決済処理
+gem 'payjp'
+# 20230924下記を追記
+# クライアントサイドで環境変数を読み込めるように
+gem 'gon'
