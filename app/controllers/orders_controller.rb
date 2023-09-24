@@ -2,15 +2,11 @@ class OrdersController < ApplicationController
     before_action :authenticate_user!
     # 重複処理のまとめ
     before_action :set_item, only: [ :index, :create]
+    before_action :pkey_env, only: [ :index, :create]
 
   def index
-    # RailsからJavaScriptへ公開鍵を渡す記述
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    pkey_env
     # Formオブジェクトのインスタンスを作成して、インスタンス変数に代入する
-    @order_address = OrderAddress.new
-  end
-
-  def new
     @order_address = OrderAddress.new
   end
 
@@ -23,8 +19,7 @@ class OrdersController < ApplicationController
       # 保存が成功した場合の処理を追加（例: 注文完了ページへのリダイレクトなど）
       redirect_to root_path
     else
-      # gonを使用するための記述
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+      pkey_env
       # バリデーションエラーが発生した場合の処理を追加
       render :index, status: :unprocessable_entity
     end
@@ -50,7 +45,11 @@ class OrdersController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
+  end
 
+  def pkey_env
+    # RailsからJavaScriptへ公開鍵を渡す記述
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
   end
 
 end
