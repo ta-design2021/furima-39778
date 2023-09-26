@@ -8,13 +8,13 @@ class OrderAddress
     validates :user_id # order_addressクラスにはアソシエーションを定義することはできない、belongs_toによるバリデーションを行うことができないのでorder_addressクラスでuser_idとitem_idに対してバリデーションを新たに設定。
     validates :item_id
     # addressesモデルのバリデーション
-    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
-    validates :item_prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "は無効です。ハイフンを含めて入力してください" }
+    validates :item_prefecture_id, numericality: { other_than: 1, message: "を選択してください" }
     validates :city
     validates :addresses
-    validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid. Input only number' }
-    validates_length_of :phone_number, maximum: 11, message: 'is too long'
-    validates_length_of :phone_number, minimum: 10, message: 'is too short'
+    validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'は無効です。数字のみを入力してください' }
+    validates_length_of :phone_number, maximum: 11, message: 'が長すぎます'
+    validates_length_of :phone_number, minimum: 10, message: 'が短すぎます'
     validates :token
   end
 

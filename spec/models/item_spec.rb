@@ -69,7 +69,7 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーの情報が「---」だと出品できない' do
         @item.item_category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item category can't be blank")
+        expect(@item.errors.full_messages).to include("Item category を選択してください")
       end
       it 'カテゴリーの情報が空欄だと出品できない' do
         @item.item_category_id = ''
@@ -80,7 +80,7 @@ RSpec.describe Item, type: :model do
       it '商品の状態の情報が「---」だと出品できない' do
         @item.item_sales_status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item sales status can't be blank")
+        expect(@item.errors.full_messages).to include("Item sales status を選択してください")
       end
 
       it '商品の状態の情報が空欄だと出品できない' do
@@ -92,7 +92,7 @@ RSpec.describe Item, type: :model do
       it '配送料の負担の情報が「---」だと出品できない' do
         @item.item_shipping_fee_status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item shipping fee status can't be blank")
+        expect(@item.errors.full_messages).to include("Item shipping fee status を選択してください")
       end
 
       it '配送料の負担の情報が空欄だと出品できない' do
@@ -104,7 +104,7 @@ RSpec.describe Item, type: :model do
       it '発送元の地域の情報が「---」だと出品できない' do
         @item.item_prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("Item prefecture を選択してください")
       end
 
       it '発送元の地域の情報が空欄だと出品できない' do
@@ -116,7 +116,7 @@ RSpec.describe Item, type: :model do
       it '発送までの日数の情報が「---」だと出品できない' do
         @item.item_scheduled_delivery_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item scheduled delivery can't be blank")
+        expect(@item.errors.full_messages).to include("Item scheduled delivery を選択してください")
       end
 
       it '発送までの日数の情報が空欄だと出品できない' do
@@ -134,19 +134,19 @@ RSpec.describe Item, type: :model do
       it '価格に半角数字以外が含まれている場合は出品できない' do
         @item.item_price = '１００００'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item price is invalid. Input half-width characters')
+        expect(@item.errors.full_messages).to include('Item price は無効です。半角数字で入力してください')
       end
 
       it '価格の範囲が、300円未満だと出品できない' do
         @item.item_price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item price is out of setting range')
+        expect(@item.errors.full_messages).to include('Item price は設定範囲外です')
       end
 
       it '価格の範囲が、9,999,999円を超えると出品できない' do
         @item.item_price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Item price is out of setting range')
+        expect(@item.errors.full_messages).to include('Item price は設定範囲外です')
       end
 
     end
