@@ -75,19 +75,19 @@ RSpec.describe OrderAddress, type: :model do
         it '郵便番号が空だと保存できないこと' do
           @order_address.postal_code = nil
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Postal code can't be blank", 'Postal code is invalid. Include hyphen(-)')
+          expect(@order_address.errors.full_messages).to include("Postal code can't be blank")
         end
 
         it '郵便番号にハイフンがないと保存できないこと' do
           @order_address.postal_code = 1_234_567
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+          expect(@order_address.errors.full_messages).to include('Postal code は無効です。ハイフンを含めて入力してください')
         end
 
         it '都道府県が「---」だと保存できないこと' do
           @order_address.item_prefecture_id = 1
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Item prefecture can't be blank")
+          expect(@order_address.errors.full_messages).to include("Item prefecture を選択してください")
         end
 
         it '都道府県が空だと保存できないこと' do
@@ -117,19 +117,19 @@ RSpec.describe OrderAddress, type: :model do
         it '電話番号が10桁以下であると保存できないこと' do
           @order_address.phone_number = '123456789'
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Phone number is too short')
+          expect(@order_address.errors.full_messages).to include('Phone number が短すぎます')
         end
 
         it '電話番号が12桁以上でないと保存できないこと' do
           @order_address.phone_number = '123456789012'
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Phone number is too long')
+          expect(@order_address.errors.full_messages).to include('Phone number が長すぎます')
         end
 
         it '電話番号にハイフンがあると保存できないこと' do
           @order_address.phone_number = '123 - 4567 - 8901'
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only number')
+          expect(@order_address.errors.full_messages).to include('Phone number は無効です。数字のみを入力してください')
         end
 
         it "tokenが空では登録できないこと" do
