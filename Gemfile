@@ -107,3 +107,6 @@ gem 'gon'
 # 20230926下記を追記
 # 日本語に対応するように
 gem 'rails-i18n'
+# 20230927下記を追記
+# S3に画像を保存する
+gem "aws-sdk-s3", require: false
