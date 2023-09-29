@@ -85,6 +85,9 @@ end
 # 本番環境（Render）のデータベース（PostgreSQL）を使用できるようGemを追加
 group :production do
   gem 'pg'
+  # 20230929下記を追記
+# Unicornを使用できるようGemを追加
+  gem 'unicorn', '6.1.0'
 end
 
 # 20230913下記を追記
