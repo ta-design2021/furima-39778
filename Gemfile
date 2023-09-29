@@ -83,8 +83,9 @@ end
 
 # 20230910下記を追記
 # 本番環境（Render）のデータベース（PostgreSQL）を使用できるようGemを追加
+# 20230929にEC2でデプロイするためにコメントアウト（bundle installの邪魔になるので）
 group :production do
-  gem 'pg'
+  # gem 'pg'
   # 20230929下記を追記
 # Unicornを使用できるようGemを追加
   gem 'unicorn', '6.1.0'
